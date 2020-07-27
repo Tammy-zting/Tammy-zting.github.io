@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/27/npm%E5%AE%9E%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">&#39;vscode超好用插件推荐&#39;</a>
+      <a class="article-title" href="/2020/07/27/npm%E5%AE%9E%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">npm实用小技巧</a>
     </h1>
   
 
@@ -86,7 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="初始化包"><a href="#初始化包" class="headerlink" title="==初始化包=="></a>==初始化包==</h1><ul>
+        <h1 id="初始化包"><a href="#初始化包" class="headerlink" title="初始化包"></a>初始化包</h1><ul>
 <li><p><code>npm init</code> 询问关于包、作者等信息</p>
 </li>
 <li><p><code>npm init -y</code> 自动生成我们的<code>package.json</code></p>
@@ -98,9 +98,9 @@
 
 </li>
 </ul>
-<h1 id="简约安装包命令"><a href="#简约安装包命令" class="headerlink" title="==简约安装包命令=="></a>==简约安装包命令==</h1><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Install package</span><br><span class="line">npm install &lt;package_name&gt;</span><br><span class="line">Shortcut: npm i &lt;package_name&gt;</span><br><span class="line"># Install devDependencies</span><br><span class="line">npm install --save-dev &lt;package_name&gt;</span><br><span class="line">Shortcut: npm i -D &lt;package_name&gt;</span><br><span class="line"># Install dependencies (This is default)</span><br><span class="line">npm install --save-prod &lt;package_name&gt;</span><br><span class="line">Shortcut: npm i -P &lt;package_name&gt;</span><br><span class="line"># Install packages globally</span><br><span class="line">npm install --global &lt;package_name&gt;</span><br><span class="line">Shortcut: npm i -g &lt;package_name&gt;</span><br></pre></td></tr></table></figure></code></pre><h1 id="全新安装依赖包"><a href="#全新安装依赖包" class="headerlink" title="全新安装依赖包"></a>全新安装依赖包</h1><ul>
+<h1 id="简约安装包命令"><a href="#简约安装包命令" class="headerlink" title="简约安装包命令"></a>简约安装包命令</h1><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Install package</span><br><span class="line">npm install &lt;package_name&gt;</span><br><span class="line">Shortcut: npm i &lt;package_name&gt;</span><br><span class="line"># Install devDependencies</span><br><span class="line">npm install --save-dev &lt;package_name&gt;</span><br><span class="line">Shortcut: npm i -D &lt;package_name&gt;</span><br><span class="line"># Install dependencies (This is default)</span><br><span class="line">npm install --save-prod &lt;package_name&gt;</span><br><span class="line">Shortcut: npm i -P &lt;package_name&gt;</span><br><span class="line"># Install packages globally</span><br><span class="line">npm install --global &lt;package_name&gt;</span><br><span class="line">Shortcut: npm i -g &lt;package_name&gt;</span><br></pre></td></tr></table></figure></code></pre><h1 id="全新安装依赖包"><a href="#全新安装依赖包" class="headerlink" title="全新安装依赖包"></a>全新安装依赖包</h1><ul>
 <li><code>npm ci</code><ul>
-<li>==根据<code>package-lock.json</code>安装依赖包，保证团队使用版本完全一致==</li>
+<li>根据<code>package-lock.json</code>安装依赖包，保证团队使用版本完全一致</li>
 <li>会删除项目中现有的<code>node_modules</code>，重新安装</li>
 <li>不会写入<code>package.json</code> 安装基本是冻结的</li>
 <li>只能一次安装一整个项目，不能安装单独的依赖包</li>
@@ -109,8 +109,7 @@
 </ul>
 </li>
 </ul>
-<p>==# 快速导航到任何npm软件包的文档==</p>
-<ul>
+<h1 id="快速导航到任何npm软件包的文档"><a href="#快速导航到任何npm软件包的文档" class="headerlink" title="快速导航到任何npm软件包的文档"></a>快速导航到任何npm软件包的文档</h1><ul>
 <li><p>导航到文档</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm docs &lt;package-name&gt;</span><br><span class="line">OR</span><br><span class="line">npm home &lt;package-name&gt;</span><br></pre></td></tr></table></figure></li>
 <li><p>导航到github</p>
@@ -127,22 +126,22 @@
 <li><p>我们可以使用 —depth 标志来限制搜索深度：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm ls --depth&#x3D;1</span><br></pre></td></tr></table></figure>
 <h1 id="NPM-scripts"><a href="#NPM-scripts" class="headerlink" title="NPM scripts"></a>NPM scripts</h1></li>
-<li><p>==列出项目存在的所有npm环境变量==</p>
+<li><p>列出项目存在的所有npm环境变量</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run env</span><br></pre></td></tr></table></figure>
 <p>  输出</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm_config_save_dev&#x3D;</span><br><span class="line">npm_config_legacy_bundling&#x3D;</span><br><span class="line">npm_config_dry_run&#x3D;</span><br><span class="line">npm_config_viewer&#x3D;man</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">npm_package_license&#x3D;ISC                # Package properties</span><br><span class="line">npm_package_author_name&#x3D;Ankit Jain</span><br><span class="line">npm_package_name&#x3D;npm-tips-and-tricks   # Name of our package</span><br></pre></td></tr></table></figure>
-<p>  ==可以通过<code>process.env.npm_package_name</code>和类似的其他变量在代码中访问上述<code>env</code>变量==</p>
+<p>  可以通过<code>process.env.npm_package_name</code>和类似的其他变量在代码中访问上述<code>env</code>变量</p>
 </li>
 <li><p>在<code>package.json</code>中配置自己的变量</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;config&quot;：&#123;</span><br><span class="line">    &quot;myvariable&quot;:&quot;Hello World&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  使用<code>npm run env</code>查看</p>
 <p>  <img src="https://note.youdao.com/yws/api/personal/file/E81983B86AD34F4997F79D04082E8357?method=download&shareKey=bb4eeee3c7c28ad319d6b898caa069b6" alt="npm run env"></p>
 </li>
-<li><p>==运行脚本==</p>
+<li><p>运行脚本</p>
 <ul>
-<li><p>==连续运行可使用<code>&amp;&amp;</code>==</p>
+<li><p>连续运行可使用<code>&amp;&amp;</code></p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm run echo-both</span><br><span class="line"># Output</span><br><span class="line">&gt; npm run echo-hello &amp;&amp; npm run echo-helloworld</span><br><span class="line">&gt; npm-tips-and-tricks@1.0.0 echo-hello </span><br><span class="line">&gt; echo &quot;Hello&quot;</span><br><span class="line">Hello</span><br><span class="line">&gt; npm-tips-and-tricks@1.0.0 echo-helloworld</span><br><span class="line">&gt; echo &quot;Helloworld&quot;</span><br><span class="line">Helloworld</span><br></pre></td></tr></table></figure></li>
-<li><p>==并行运行<code>&amp;</code>==</p>
+<li><p>并行运行<code>&amp;</code></p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm run echo-both-in-parallel</span><br><span class="line"># Output</span><br><span class="line">&gt; npm run echo-hello &amp; npm run echo-helloworld</span><br><span class="line">&gt; npm-tips-and-tricks@1.0.0 echo-hello</span><br><span class="line">&gt; echo &quot;Hello&quot;</span><br><span class="line">&gt; npm-tips-and-tricks@1.0.0 echo-helloworld</span><br><span class="line">&gt; echo &quot;Helloworld&quot;</span><br><span class="line">Hello</span><br><span class="line">Helloworld</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
@@ -193,7 +192,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/27/npm%E5%AE%9E%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="ckd44oj9c0001x4tm72n8fuhl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/27/npm%E5%AE%9E%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="ckd44vhda0001e0tm2bxefzuz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -242,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/26/hello-world/" data-id="ckd44oj900000x4tm6pm98zai" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/26/hello-world/" data-id="ckd44vhd60000e0tmf3ojd48y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -283,7 +282,7 @@
       <ul>
         
           <li>
-            <a href="/2020/07/27/npm%E5%AE%9E%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">&#39;vscode超好用插件推荐&#39;</a>
+            <a href="/2020/07/27/npm%E5%AE%9E%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">npm实用小技巧</a>
           </li>
         
           <li>

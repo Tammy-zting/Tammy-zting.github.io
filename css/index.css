@@ -4635,7 +4635,7 @@ blockquote.pullquote.right {
   background: #2c2c2c;
 }
 [data-theme='dark'] .recent-posts .recent-post-item {
-  background: #121212 !important;
+  background: #2c2c2c !important;
 }
 [data-theme='dark'] .recent-posts .article-title {
   color: rgba(255,255,255,0.8) !important;

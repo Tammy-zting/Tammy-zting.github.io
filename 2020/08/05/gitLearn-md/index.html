@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Git汇总学习 | Tammy-Zting-Blog</title><meta name="description" content="Git 学习config 设置用户名和账号 使用了--global参数 表示你这台机器上的所有仓库都会用这个配置   12git config --global user.name &quot;Your Name&quot;git config --global user.email &quot;email@example.com&quot;  查看配置 1git config --list"><meta name="author" content="Zting"><meta name="copyright" content="Zting"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://tammy-zting.github.io/2020/08/05/gitLearn-md/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="Git汇总学习"><meta property="og:url" content="http://tammy-zting.github.io/2020/08/05/gitLearn-md/"><meta property="og:site_name" content="Tammy-Zting-Blog"><meta property="og:description" content="Git 学习config 设置用户名和账号 使用了--global参数 表示你这台机器上的所有仓库都会用这个配置   12git config --global user.name &quot;Your Name&quot;git config --global user.email &quot;email@example.com&quot;  查看配置 1git config --list"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2020-08-05T01:56:06.000Z"><meta property="article:modified_time" content="2020-08-07T03:13:47.078Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Git汇总学习 | Tammy-Zting-Blog</title><meta name="description" content="Git 学习config 设置用户名和账号 使用了--global参数 表示你这台机器上的所有仓库都会用这个配置   12git config --global user.name &quot;Your Name&quot;git config --global user.email &quot;email@example.com&quot;  查看配置 1git config --list"><meta name="author" content="Zting"><meta name="copyright" content="Zting"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://tammy-zting.github.io/2020/08/05/gitLearn-md/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="Git汇总学习"><meta property="og:url" content="http://tammy-zting.github.io/2020/08/05/gitLearn-md/"><meta property="og:site_name" content="Tammy-Zting-Blog"><meta property="og:description" content="Git 学习config 设置用户名和账号 使用了--global参数 表示你这台机器上的所有仓库都会用这个配置   12git config --global user.name &quot;Your Name&quot;git config --global user.email &quot;email@example.com&quot;  查看配置 1git config --list"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2020-08-05T01:56:06.000Z"><meta property="article:modified_time" content="2020-08-12T08:57:34.599Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -95,7 +95,7 @@ if (autoChangeMode === '1') {
 .justified-gallery img{
   opacity: 1
 }
-</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/author_img.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-学习"><span class="toc-number">1.</span> <span class="toc-text">Git 学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#config"><span class="toc-number">1.1.</span> <span class="toc-text">config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建仓库"><span class="toc-number">1.2.</span> <span class="toc-text">创建仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#仓库操作"><span class="toc-number">1.3.</span> <span class="toc-text">仓库操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-status-查看状态"><span class="toc-number">1.3.1.</span> <span class="toc-text">git status 查看状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff-比较修改"><span class="toc-number">1.3.2.</span> <span class="toc-text">git diff  比较修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-log-查看快照"><span class="toc-number">1.4.</span> <span class="toc-text">git log 查看快照</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-reset-撤销"><span class="toc-number">1.5.</span> <span class="toc-text">git reset 撤销</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#撤销已经提交到分支的恢复"><span class="toc-number">1.5.1.</span> <span class="toc-text">撤销已经提交到分支的恢复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#撤销已经提交到暂存区的操作"><span class="toc-number">1.5.2.</span> <span class="toc-text">撤销已经提交到暂存区的操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-reflog-查看操作过程"><span class="toc-number">1.6.</span> <span class="toc-text">git reflog 查看操作过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作区和暂存区"><span class="toc-number">1.7.</span> <span class="toc-text">工作区和暂存区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-checkout-–-yourfile-txt-恢复文件"><span class="toc-number">1.8.</span> <span class="toc-text">git checkout – yourfile.txt 恢复文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-rm-删除暂存区的文件"><span class="toc-number">1.9.</span> <span class="toc-text">git rm 删除暂存区的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程仓库"><span class="toc-number">1.10.</span> <span class="toc-text">远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub"><span class="toc-number">1.10.1.</span> <span class="toc-text">GitHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加远程库"><span class="toc-number">1.10.2.</span> <span class="toc-text">添加远程库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-clone-xxxx-克隆远程库到本地"><span class="toc-number">1.10.3.</span> <span class="toc-text">git clone xxxx 克隆远程库到本地</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支管理"><span class="toc-number">1.11.</span> <span class="toc-text">分支管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建与合并分支"><span class="toc-number">1.11.1.</span> <span class="toc-text">创建与合并分支</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原理"><span class="toc-number">1.11.1.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例"><span class="toc-number">1.11.1.2.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决冲突"><span class="toc-number">1.11.2.</span> <span class="toc-text">解决冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保存工作区"><span class="toc-number">1.11.3.</span> <span class="toc-text">保存工作区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch-D-强行删除一个还没有合并的分支"><span class="toc-number">1.11.4.</span> <span class="toc-text">git branch -D  强行删除一个还没有合并的分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多人协作"><span class="toc-number">1.11.5.</span> <span class="toc-text">多人协作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-rebase"><span class="toc-number">1.11.6.</span> <span class="toc-text">git rebase</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标签"><span class="toc-number">1.12.</span> <span class="toc-text">标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建标签"><span class="toc-number">1.12.1.</span> <span class="toc-text">创建标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作标签"><span class="toc-number">1.12.2.</span> <span class="toc-text">操作标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Github"><span class="toc-number">1.13.</span> <span class="toc-text">使用Github</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Tammy-Zting-Blog</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Git汇总学习</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-08-05 09:56:06"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-08-05</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-08-07 11:13:47"><i class="fas fa-history fa-fw"></i> 更新于 2020-08-07</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="Git-学习"><a href="#Git-学习" class="headerlink" title="Git 学习"></a>Git 学习</h1><h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><ul>
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/author_img.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-学习"><span class="toc-number">1.</span> <span class="toc-text">Git 学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#config"><span class="toc-number">1.1.</span> <span class="toc-text">config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建仓库"><span class="toc-number">1.2.</span> <span class="toc-text">创建仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#仓库操作"><span class="toc-number">1.3.</span> <span class="toc-text">仓库操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-status-查看状态"><span class="toc-number">1.3.1.</span> <span class="toc-text">git status 查看状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-diff-比较修改"><span class="toc-number">1.3.2.</span> <span class="toc-text">git diff  比较修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-log-查看快照"><span class="toc-number">1.4.</span> <span class="toc-text">git log 查看快照</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-reset-撤销"><span class="toc-number">1.5.</span> <span class="toc-text">git reset 撤销</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#撤销已经提交到分支的恢复"><span class="toc-number">1.5.1.</span> <span class="toc-text">撤销已经提交到分支的恢复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#撤销已经提交到暂存区的操作"><span class="toc-number">1.5.2.</span> <span class="toc-text">撤销已经提交到暂存区的操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-reflog-查看操作过程"><span class="toc-number">1.6.</span> <span class="toc-text">git reflog 查看操作过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作区和暂存区"><span class="toc-number">1.7.</span> <span class="toc-text">工作区和暂存区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-checkout-–-yourfile-txt-恢复文件"><span class="toc-number">1.8.</span> <span class="toc-text">git checkout – yourfile.txt 恢复文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-rm-删除暂存区的文件"><span class="toc-number">1.9.</span> <span class="toc-text">git rm 删除暂存区的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程仓库"><span class="toc-number">1.10.</span> <span class="toc-text">远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub"><span class="toc-number">1.10.1.</span> <span class="toc-text">GitHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加远程库"><span class="toc-number">1.10.2.</span> <span class="toc-text">添加远程库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-clone-xxxx-克隆远程库到本地"><span class="toc-number">1.10.3.</span> <span class="toc-text">git clone xxxx 克隆远程库到本地</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支管理"><span class="toc-number">1.11.</span> <span class="toc-text">分支管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建与合并分支"><span class="toc-number">1.11.1.</span> <span class="toc-text">创建与合并分支</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原理"><span class="toc-number">1.11.1.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例"><span class="toc-number">1.11.1.2.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决冲突"><span class="toc-number">1.11.2.</span> <span class="toc-text">解决冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保存工作区"><span class="toc-number">1.11.3.</span> <span class="toc-text">保存工作区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-branch-D-强行删除一个还没有合并的分支"><span class="toc-number">1.11.4.</span> <span class="toc-text">git branch -D  强行删除一个还没有合并的分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多人协作"><span class="toc-number">1.11.5.</span> <span class="toc-text">多人协作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-rebase"><span class="toc-number">1.11.6.</span> <span class="toc-text">git rebase</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标签"><span class="toc-number">1.12.</span> <span class="toc-text">标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建标签"><span class="toc-number">1.12.1.</span> <span class="toc-text">创建标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作标签"><span class="toc-number">1.12.2.</span> <span class="toc-text">操作标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Github"><span class="toc-number">1.13.</span> <span class="toc-text">使用Github</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Tammy-Zting-Blog</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Git汇总学习</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-08-05 09:56:06"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-08-05</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-08-12 16:57:34"><i class="fas fa-history fa-fw"></i> 更新于 2020-08-12</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="Git-学习"><a href="#Git-学习" class="headerlink" title="Git 学习"></a>Git 学习</h1><h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><ul>
 <li><p>设置用户名和账号 使用了<code>--global</code>参数 表示你这台机器上的所有仓库都会用这个配置</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;email@example.com&quot;</span><br></pre></td></tr></table></figure>
 </li>
@@ -132,39 +132,36 @@ if (autoChangeMode === '1') {
 </li>
 </ul>
 <h2 id="仓库操作"><a href="#仓库操作" class="headerlink" title="仓库操作"></a>仓库操作</h2><h3 id="git-status-查看状态"><a href="#git-status-查看状态" class="headerlink" title="git status 查看状态"></a>git status 查看状态</h3><ul>
-<li><p>下面表示<code>ztt.txt</code>这个文件被修改过</p>
-<p>  <img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/blob/master/img/gitpic/git_status.png?raw=true?" alt=""></p>
-</li>
+<li>下面表示<code>ztt.txt</code>这个文件被修改过</li>
 </ul>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/7F76757A206345549E1BFB139408AAFB?method=download&shareKey=57da0c3daa5faa757d134d11ddda323b" alt=""></p>
 <h3 id="git-diff-比较修改"><a href="#git-diff-比较修改" class="headerlink" title="git diff  比较修改"></a>git diff  比较修改</h3><ul>
 <li><p>顾名思义就是查看文件的对比，我们可以看出第一行增加了<code>add content</code></p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/blob/master/img/gitpic/git_diff.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/493E6B4860A449898E40A588E47B5CC8?method=download&shareKey=6a444af3cf44c503fc4d7db849bae7ab" alt=""></p>
 </li>
-</ul>
-<ul>
 <li><p>查看完修改的内容就可以放心提交了<code>git commit -am &quot;add content&quot;</code></p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_commit.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/A2B8C318D9724871A5A486B41BEEA06A?method=download&shareKey=24e70a94e25022887a279a21b7fbbadb" alt=""></p>
 </li>
 </ul>
 <h2 id="git-log-查看快照"><a href="#git-log-查看快照" class="headerlink" title="git log 查看快照"></a>git log 查看快照</h2><ul>
 <li><p>查看快照 即每次<code>commit</code>后的内容，从下面可以看出我们做过两次提交,显示的顺序是从近到远</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_log.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/E978D64120874253B6E49D9304CD9527?method=download&shareKey=ff5055da3e134496f2861031b7eea347" alt=""></p>
 </li>
 </ul>
 <p>​    </p>
 <h2 id="git-reset-撤销"><a href="#git-reset-撤销" class="headerlink" title="git reset 撤销"></a>git reset 撤销</h2><h3 id="撤销已经提交到分支的恢复"><a href="#撤销已经提交到分支的恢复" class="headerlink" title="撤销已经提交到分支的恢复"></a>撤销已经提交到分支的恢复</h3><ul>
 <li><p>让我们再修改下文件 增加一行<code>add footer</code>,再查看下<code>git log</code></p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_log_reset.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/B5B0AEEE7CDB45669F28D8847FD92273?method=download&shareKey=b4b2addc24baa65e6566148d3e1b4acf" alt=""></p>
 </li>
 <li><p>方法一 恢复到上一个版本，<code>~x</code>代表回退到上几个版本</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~1</span><br></pre></td></tr></table></figure>
 
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_reset.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/FF18BE1316624EAF88A32D2B9FBCD323?method=download&shareKey=4dd1fc5fe921f46a447ecb2a436a9773" alt=""></p>
 </li>
 <li><p>方法二 恢复到未来版本 ，只要窗口没关闭的话你可以，往上找到版本号，不用写全，会自动补全（当然也不能只写前一两位，因为Git可能会找到多个版本号，就无法确定是哪一个了。）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 版本号xxx</span><br></pre></td></tr></table></figure>
 
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_reset1.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/7314660A6F7A4C5FACD8746FA577F89F?method=download&shareKey=2d87b9956a8f4ae88c855573b241776c" alt=""></p>
 </li>
 </ul>
 <h3 id="撤销已经提交到暂存区的操作"><a href="#撤销已经提交到暂存区的操作" class="headerlink" title="撤销已经提交到暂存区的操作"></a>撤销已经提交到暂存区的操作</h3><ul>
@@ -174,21 +171,21 @@ if (autoChangeMode === '1') {
 <p>  HEAD表示最新的版本</p>
 </li>
 </ul>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_reset2.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/52CA43863D5A42949381976A5A9405D9?method=download&shareKey=4407a393dd88bb1b6e3579c987d9f28f" alt=""></p>
 <ul>
 <li><p>第二步 恢复到修改前的文件</p>
 <pre><code>git checkout -- yourfile.txt</code></pre></li>
 </ul>
 <h2 id="git-reflog-查看操作过程"><a href="#git-reflog-查看操作过程" class="headerlink" title="git reflog 查看操作过程"></a>git reflog 查看操作过程</h2><ul>
 <li><p>用于查找<code>commit id</code>，它会记录你的每一次操作</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_reflog.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/B9E1E715C466492B8E6D1B048A13EEE2?method=download&shareKey=f8910808482d8bb290ac65b7b04602ae" alt=""></p>
 </li>
 </ul>
 <h2 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h2><ul>
 <li><p>工作区：我们存放文件的文件夹，<code>.git</code>这个隐藏目录是git的版本库</p>
 </li>
 <li><p>git版本库中最重要的称为<code>Stage</code>即暂存区，git会为我们自动创建第一个分支<code>master</code>,以及指向<code>master</code>的一个指针<code>HEAD</code>，我们控制版本就是移动这个指针来更新文件</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/55659E9EB95D4576949F98BC1DEA6557?method=download&shareKey=e56ab0e3080843f27fe1d80a4a1aed0e" alt=""></p>
 <p>第一步<code>git add</code>就是把文件添加到暂存区</p>
 <p>第二步<code>git commit</code>就是把暂存区的内容提交到当前分支</p>
 </li>
@@ -197,7 +194,7 @@ if (autoChangeMode === '1') {
 <li><p>情况一 文件自修改后还没被放到暂存区，撤销修改就回到修改前的状态</p>
 </li>
 <li><p>情况二 文件已经添加到暂存区，又做了修改，撤销修改就回到添加到暂存区后的状态</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_checkout.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/D6C9D2C485DF4CE2B622801C756B42DE?method=download&shareKey=e79245e3061cbe6cc773e1653f9e1646" alt=""></p>
 <p><em>注意命令中的<code>--</code>很重要，如果没有就变成了切换到另一分支的命令</em></p>
 </li>
 </ul>
@@ -207,10 +204,10 @@ if (autoChangeMode === '1') {
 <li><p>现在工作区新建一个<code>test.txt</code>文件，并提交到分支，再在工作区手动删除文件，查看状态</p>
 <ul>
 <li><p>情况一 删除暂存区的<code>test.txt</code>文件</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_rm.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/ABF2A36A9ACD47CC993A4CE2AAB66D92?method=download&shareKey=6b6627657d0ed079fec330d5bf1a7fa0" alt=""></p>
 </li>
 <li><p>情况二 不小心误删的，因为暂存区还有保存着一份，故可以执行以上的命令恢复文件</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_checkout1.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/D12784CEB09B436B8C8DA8E373E6260C?method=download&shareKey=26f49de005c755f9901d87b830e7ea75" alt=""></p>
 </li>
 </ul>
 </li>
@@ -221,23 +218,23 @@ if (autoChangeMode === '1') {
 <li><p>创建SSH Key，在用户主目录下（cmd），查看是否存在<code>.ssh</code>目录，若没有创建</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/create_ssh.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/BB4EFA420A6644039723A7BD8B4D65CF?method=download&shareKey=e22ffd65385f7b5a86b602272db398ff" alt=""></p>
 </li>
 <li><p>之后就可以找到<code>.ssh</code>目录，其中<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，这两个就是SSH Key的秘钥对，<code>id_rsa</code>是私钥，不能泄露，<code>id_rsa.pub</code>是公钥，可以放心给别人</p>
 </li>
 <li><p>登录Github,打开setting,选择SSH and GPG keys ,创建New SSH key</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/github_setting.png?raw=true" alt=""></p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/github_newsshkey.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/6EA79857D90444E581D52C46ED4918FB?method=download&shareKey=bb6061d702ecf0702c6f81f11aa92e4a" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/8EADEBA9761E44A887015116A599E768?method=download&shareKey=9750b7b867b8e9d0f76f3badb161b26e" alt=""></p>
 </li>
 </ul>
 </li>
 </ul>
 <pre><code>​        Title任意填，Key粘贴公钥里的内容即可`id_rsa.pub `</code></pre><h3 id="添加远程库"><a href="#添加远程库" class="headerlink" title="添加远程库"></a>添加远程库</h3><ul>
 <li><p>github创建一个新的Repository</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/newRepository.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/8F3175BF88B84E20873E52B429277FA7?method=download&shareKey=359709298efb9996c1a2fc83fa4a5e89" alt=""></p>
 </li>
 <li><p>然后可以根据github提示来</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/remote_origin.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/2288BBBB002A45D490134EC29A8ABCFF?method=download&shareKey=aff2fc1ced59474b188f65e07174a808" alt=""></p>
 <ul>
 <li><p>在本地仓库运行命令 注意地址是你自己github的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https:&#x2F;&#x2F;github.com&#x2F;yourgithub&#x2F;test.git</span><br></pre></td></tr></table></figure>
@@ -268,19 +265,19 @@ if (autoChangeMode === '1') {
 </ul>
 <h3 id="创建与合并分支"><a href="#创建与合并分支" class="headerlink" title="创建与合并分支"></a>创建与合并分支</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><ul>
 <li><p><code>master</code>分支是一条线，<code>HEAD</code>指向<code>master</code>，每次提交<code>master</code>分支都会向前移动一步，这样随着你不断提交<code>master</code>分支线会越来越长</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/dev1.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/EE272469AC994DD6A5ECA6E1FA5903AC?method=download&shareKey=7a18c12a3103a6e192433bf2ef005afd" alt=""></p>
 <ul>
 <li><p>创建<code>dev</code>分支，指向<code>master</code>相同的提交，<code>HEAD</code>指向<code>dev</code>,从此对工作区的修改和提交都是针对<code>dev</code>分支，比如新提交，<code>dev</code>指针会往前移动一步，但是<code>master</code>不会移动</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/dev3.png?raw=true" alt=""></p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/dev4.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/51145F6538F54C33ACEEC86CBE782683?method=download&shareKey=3017705c7758aa5a23d3b774d89330ff" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/7DACEE0DF83A4D06B797D5D88706C07F?method=download&shareKey=4e611972220915a99f3471386fc6b912" alt=""></p>
 </li>
 </ul>
 </li>
 <li><p>合并<code>dev</code>到<code>master</code>，直接把<code>master</code>指向当前<code>dev</code>提交</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/dev5.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/205EC3953C454375A4F113D5DEE68690?method=download&shareKey=121d80a3de26aa47d38c84e581730513" alt=""></p>
 </li>
 <li><p>合并完成之后就可以把<code>dev</code>分支删除，只剩下<code>master</code>分支</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/dev6.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/49E7A5752E824B79B4B921AE5F978D34?method=download&shareKey=f2b3c546d118cdf57d73170db528674c" alt=""></p>
 </li>
 </ul>
 <h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><ul>
@@ -293,12 +290,12 @@ if (autoChangeMode === '1') {
 <li><p>查看当前分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
 
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/branch.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/6DF637F3E4834C7580F1249FCD9F6308?method=download&shareKey=1c50acd973d232f5d9214dd1f7dada7f" alt=""></p>
 </li>
 <li><p>增加<code>new.txt</code>文件，提交到<code>dev</code>分支,切换到<code>master</code>分支看不到这个文件，这是因为这个文件提交到的是<code>dev</code>分支，现在切换到<code>master</code>分支做合并分支操作，之后可以删除<code>dev</code>分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
 
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_merge.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/8F403473073C43968226FA38C5DBFE3A?method=download&shareKey=442e6a7e8a6bdfd18690de52559e1bb9" alt=""></p>
 </li>
 </ul>
 <h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><ul>
@@ -312,12 +309,12 @@ if (autoChangeMode === '1') {
 <li><p>切换到<code>master</code>分支，再次修改<code>new.txt</code>文件，增加一行<code>A and B</code>，然后提交分支</p>
 </li>
 <li><p>执行<code>git merge demo</code>合并分支命令，<code>git status</code>会有冲突提示</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/conflict.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/7EFD2EDF67C148028EE6496FE621AFA9?method=download&shareKey=044ffd460484c4e8c15d4d93b0759c79" alt=""></p>
 <p><em>其中提示比远程仓库提前了2个提交Your branch is ahead of ‘origin/master’</em></p>
 <p><em>git merge demo 是采用<code>Fast forward</code>模式，禁用该模式可以加参数 git merge –no-ff -m “xxx”,加上<code>--no-ff</code>参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而<code>fast forward</code>合并就看不出来曾经做过合并。</em></p>
 </li>
 <li><p>查看<code>new.txt</code>文件，Git用<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>，<code>=======</code>，<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>标记出不同分支的内容，</p>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/conflict1.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/4EEB409FA1DA4F528AE4D938753C2AF8?method=download&shareKey=5523a5ee217ba0de10d8bff9be8a7794" alt=""></p>
 </li>
 <li><p>修改<code>new.txt</code>文件，解决冲突后提交即可，删除<code>demo</code>分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d demo</span><br></pre></td></tr></table></figure>
@@ -331,14 +328,14 @@ if (autoChangeMode === '1') {
 <li><p>保存分支<code>demo</code>工作区内容,你可以多次保存</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
 
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_stash.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/0090D6C553FE4E939C4EE5DDBF30524C?method=download&shareKey=a185f3b663dea8adff9ad4f3eb364189" alt=""></p>
 </li>
 <li><p>切换到<code>master</code>,创建并切换到新分支例如<code>issue-101</code>，修复bug,切换回<code>master</code>直接合并分支</p>
 </li>
 <li><p>切换回<code>demo</code>工作区继续干活，首先就要恢复工作区</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git stash list &#x2F;&#x2F;查看</span><br><span class="line"></span><br><span class="line">git stash apply stash@&#123;0&#125;  &#x2F;&#x2F;恢复指定的位置</span><br><span class="line">git stash drop &#x2F;&#x2F;删除</span><br><span class="line"></span><br><span class="line">git stash pop &#x2F;&#x2F;上面两句可以用这句代替</span><br></pre></td></tr></table></figure>
 
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_stash_pop.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/453A5C263E3345328E669538BB96EE3B?method=download&shareKey=f8c84ad48fad2a96345e7043e564f4fc" alt=""></p>
 </li>
 <li><p>提交<code>demo</code>分支的工作</p>
 </li>
@@ -346,12 +343,12 @@ if (autoChangeMode === '1') {
 <ul>
 <li>这是提交的<code>master</code>的bug</li>
 </ul>
-<p><img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_fixbug.png?raw=true" alt=""></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/AE38C2B3BB3D4C07BA8FA406A7199FE1?method=download&shareKey=a0c11153efd74bc77c6cc3724f6acf3d" alt=""></p>
 <ul>
 <li><p>复制master的bug</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git cherry-pick &lt;commit&gt;</span><br></pre></td></tr></table></figure>
 
-<p>  <img src= "/img/loading.gif" data-src="https://github.com/Tammy-zting/Tammy-zting.github.io/tree/master/img/gitpic/git_cherry_pick.png?raw=true" alt=""></p>
+<p>  <img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/9E8BA3EE4D2C4A0F9344E354823E087B?method=download&shareKey=b5a5a8aacde793dd5e5db337a60b7ef9" alt=""></p>
 </li>
 </ul>
 </li>

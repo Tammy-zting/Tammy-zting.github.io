@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Web性能实战 第二节 | Tammy-Zting-Blog</title><meta name="description" content="第4节 关键CSS4.1 原理 关键CSS将样式分为两类：首屏样式和页面其余部分的样式  只将首屏样式存储到&lt;style&gt;标签中，并将其内联到HTML，剩下的样式将从外部文件加载。  使用标签加载CSS，而是使用preload提示 1&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;...&quot; as&#x3D;&quot;style&quot; onload&#x3D;&quot;this.rel&#x3D;stylesheet&#39;&quot; &amp;g"><meta name="author" content="Zting"><meta name="copyright" content="Zting"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://tammy-zting.github.io/2021/07/28/Web%E6%80%A7%E8%83%BD%E5%AE%9E%E6%88%98%20%E7%AC%AC%E4%BA%8C%E8%8A%82/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="Web性能实战 第二节"><meta property="og:url" content="http://tammy-zting.github.io/2021/07/28/Web%E6%80%A7%E8%83%BD%E5%AE%9E%E6%88%98%20%E7%AC%AC%E4%BA%8C%E8%8A%82/"><meta property="og:site_name" content="Tammy-Zting-Blog"><meta property="og:description" content="第4节 关键CSS4.1 原理 关键CSS将样式分为两类：首屏样式和页面其余部分的样式  只将首屏样式存储到&lt;style&gt;标签中，并将其内联到HTML，剩下的样式将从外部文件加载。  使用标签加载CSS，而是使用preload提示 1&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;...&quot; as&#x3D;&quot;style&quot; onload&#x3D;&quot;this.rel&#x3D;stylesheet&#39;&quot; &amp;g"><meta property="og:image" content="http://tammy-zting.github.io/img/dog.gif"><meta property="article:published_time" content="2021-07-28T09:35:06.000Z"><meta property="article:modified_time" content="2021-08-17T02:47:54.841Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="next" title="Web性能实战 第一节" href="http://tammy-zting.github.io/2021/07/28/Web%E6%80%A7%E8%83%BD%E5%AE%9E%E6%88%98%20%E7%AC%AC%E4%B8%80%E8%8A%82/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/author_img.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#第4节-关键CSS"><span class="toc-number">1.</span> <span class="toc-text">第4节 关键CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-原理"><span class="toc-number">1.1.</span> <span class="toc-text">4.1 原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-实现"><span class="toc-number">1.2.</span> <span class="toc-text">4.2 实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第5节-响应式图像"><span class="toc-number">2.</span> <span class="toc-text">第5节 响应式图像</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-通过媒体查询适配高DPI显示器"><span class="toc-number">2.1.</span> <span class="toc-text">5.1 通过媒体查询适配高DPI显示器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-使用SVG"><span class="toc-number">2.2.</span> <span class="toc-text">5.2 使用SVG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-在HTML中传输图像"><span class="toc-number">2.3.</span> <span class="toc-text">5.3 在HTML中传输图像</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-1-max-width规则"><span class="toc-number">2.3.1.</span> <span class="toc-text">5.3.1 max-width规则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-2-srcset"><span class="toc-number">2.3.2.</span> <span class="toc-text">5.3.2 srcset</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-3-使用size控制粒度"><span class="toc-number">2.3.3.</span> <span class="toc-text">5.3.3 使用size控制粒度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-4-使用picture元素"><span class="toc-number">2.3.4.</span> <span class="toc-text">5.3.4 使用picture元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-5-使用Picturefill提供polyfill支持"><span class="toc-number">2.3.5.</span> <span class="toc-text">5.3.5 使用Picturefill提供polyfill支持</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3-6-使用Modernizr选择性加载Picturefill"><span class="toc-number">2.3.6.</span> <span class="toc-text">5.3.6 使用Modernizr选择性加载Picturefill</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第6节-图像处理"><span class="toc-number">3.</span> <span class="toc-text">第6节 图像处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-雪碧图"><span class="toc-number">3.1.</span> <span class="toc-text">6.1 雪碧图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2缩小图像"><span class="toc-number">3.2.</span> <span class="toc-text">6.2缩小图像</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-1-优化JPEG图像"><span class="toc-number">3.2.1.</span> <span class="toc-text">6.2.1 优化JPEG图像</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-2-优化PNG图像"><span class="toc-number">3.2.2.</span> <span class="toc-text">6.2.2 优化PNG图像</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-3-优化SVG"><span class="toc-number">3.2.3.</span> <span class="toc-text">6.2.3 优化SVG</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-使用WebP编码图像"><span class="toc-number">3.3.</span> <span class="toc-text">6.3 使用WebP编码图像</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3-1-使用imagemin编码有损WebP图像"><span class="toc-number">3.3.1.</span> <span class="toc-text">6.3.1 使用imagemin编码有损WebP图像</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3-2-使用imagemin编码无损WebP图像"><span class="toc-number">3.3.2.</span> <span class="toc-text">6.3.2 使用imagemin编码无损WebP图像</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3-3-支持度不高"><span class="toc-number">3.3.3.</span> <span class="toc-text">6.3.3 支持度不高</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-懒加载图像"><span class="toc-number">3.4.</span> <span class="toc-text">6.4 懒加载图像</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第7节-影响脚本加载行为"><span class="toc-number">4.</span> <span class="toc-text">第7节 影响脚本加载行为</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第8节-使用-Service-Worker-提升性能"><span class="toc-number">5.</span> <span class="toc-text">第8节 使用 Service Worker 提升性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第9节-微调资源传输的方法"><span class="toc-number">6.</span> <span class="toc-text">第9节 微调资源传输的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#9-1-服务器压缩资源"><span class="toc-number">6.1.</span> <span class="toc-text">9.1 服务器压缩资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-2-缓存资源"><span class="toc-number">6.2.</span> <span class="toc-text">9.2 缓存资源</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#9-2-1缓存Cache-Control"><span class="toc-number">6.2.1.</span> <span class="toc-text">9.2.1缓存Cache-Control</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9-2-2-服务器检查资源是否更改"><span class="toc-number">6.2.2.</span> <span class="toc-text">9.2.2 服务器检查资源是否更改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9-2-3-CDN"><span class="toc-number">6.2.3.</span> <span class="toc-text">9.2.3 CDN</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-3-制定最佳缓存策略"><span class="toc-number">6.3.</span> <span class="toc-text">9.3 制定最佳缓存策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-4-实现缓存策略"><span class="toc-number">6.4.</span> <span class="toc-text">9.4 实现缓存策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-5-使缓存资源失效"><span class="toc-number">6.5.</span> <span class="toc-text">9.5 使缓存资源失效</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-6-使用CDN"><span class="toc-number">6.6.</span> <span class="toc-text">9.6 使用CDN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-7-使用资源提示"><span class="toc-number">6.7.</span> <span class="toc-text">9.7 使用资源提示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第10节-HTTP-2必要性"><span class="toc-number">7.</span> <span class="toc-text">第10节 HTTP&#x2F;2必要性</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/dog.gif)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Tammy-Zting-Blog</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Web性能实战 第二节</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-07-28 17:35:06"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-07-28</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-08-17 10:47:54"><i class="fas fa-history fa-fw"></i> 更新于 2021-08-17</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h3 id="第4节-关键CSS"><a href="#第4节-关键CSS" class="headerlink" title="第4节 关键CSS"></a>第4节 关键CSS</h3><h4 id="4-1-原理"><a href="#4-1-原理" class="headerlink" title="4.1 原理"></a>4.1 原理</h4><ul>
+<li><p><strong>关键CSS将样式分为两类：首屏样式和页面其余部分的样式</strong></p>
+</li>
+<li><p><strong>只将首屏样式存储到<code>&lt;style&gt;</code>标签中，并将其内联到HTML，剩下的样式将从外部文件加载。</strong></p>
+</li>
+<li><p><strong>使用<link>标签加载CSS，而是使用preload提示</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"preload"</span> <span class="attr">href</span>=<span class="string">"..."</span> <span class="attr">as</span>=<span class="string">"style"</span> <span class="attr">onload</span>=<span class="string">"this.rel=stylesheet'"</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样可以在不阻塞渲染的情况下加载CSS。CSS完成下载时，标签上的onload事件处理程序将被触发。下载完成后，rel属性的值就会从preload转换为stylesheet。这将<link>标签从资源提示更改为普通CSS引入，后者将CSS应用于首屏以外的内容。JavaScript polyfill作为兜底，以防浏览器不支持preload提示。就是这么简单！</p>
+</li>
+</ul>
+<h4 id="4-2-实现"><a href="#4-2-实现" class="headerlink" title="4.2 实现"></a>4.2 实现</h4><ul>
+<li><strong>480、667、768、800、900、1024和1280像素的位置绘制参考线</strong>。这些是流行设备的常见垂直分辨率，并且大多数设备的分辨率包含在两者之间的任何位置。制作好这些参考线后，你需要调整浏览器窗口的大小，以查看内容在每个临界点上的位置。</li>
+<li><a href="https://www.mydevice.io/" target="_blank" rel="noopener">网站mydevice.io列出了各种设备的分辨率</a></li>
+</ul>
+<h3 id="第5节-响应式图像"><a href="#第5节-响应式图像" class="headerlink" title="第5节 响应式图像"></a>第5节 响应式图像</h3><h4 id="5-1-通过媒体查询适配高DPI显示器"><a href="#5-1-通过媒体查询适配高DPI显示器" class="headerlink" title="5.1 通过媒体查询适配高DPI显示器"></a>5.1 通过媒体查询适配高DPI显示器</h4><ul>
+<li><p>-webkit-min-device-pixel-ratio媒体查询会检查像素密度的简单比率，其中比率1相当于96DPI。这种情况下，在下载更高分辨率的图像之前，你要确保显示器的像素密度至少为192DPI。而min-resolution媒体查询则采用更直接的值192dpi。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen (<span class="attribute">-webkit-min-device-pixel-ratio:</span> <span class="number">2</span>), (<span class="attribute">min-resolution:</span> <span class="number">192dpi</span>) <span class="keyword">and</span> (<span class="attribute">min-width:</span> <span class="number">30em</span>)&#123; <span class="comment">/* High DPI 480px/16px */</span>	<span class="selector-id">#masthead</span>&#123;	&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/22330EEDB8494057B0961548631AF84C?method=download&shareKey=a73efbd44110e696f71269d0b55deff0" alt="heigh-dpi.png"></p>
+<h4 id="5-2-使用SVG"><a href="#5-2-使用SVG" class="headerlink" title="5.2 使用SVG"></a>5.2 使用SVG</h4></li>
+<li><p><strong>JPEG和全彩PNG文件更适合照片，而SVG最适合用于logo、线条艺术和图案等内容</strong></p>
+</li>
+<li><p>使用的两种方法</p>
+<ul>
+<li><p>标签使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span>   <span class="attr">src</span>=<span class="string">"img/logo.svg"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img>标签中使用SVG文件时，几乎没有理由在<picture>元素或srcset中使用它，除非在<picture>元素中将其用作一系列图像回退的一部分。</p>
+</li>
+<li><p>内嵌使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">"...."</span> <span class="attr">id</span>=<span class="string">"logo"</span>&gt;</span>    ....<span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这种方式有优势也有劣势。优点是，内嵌SVG可以通过删除HTTP请求来帮助减少页面加载时间，前提是你的站点没有托管在HTTP/2服务器上。缺点是，这也使得资源在页面间的可缓存性降低。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-3-在HTML中传输图像"><a href="#5-3-在HTML中传输图像" class="headerlink" title="5.3 在HTML中传输图像"></a>5.3 在HTML中传输图像</h4><h5 id="5-3-1-max-width规则"><a href="#5-3-1-max-width规则" class="headerlink" title="5.3.1 max-width规则"></a>5.3.1 max-width规则</h5><ul>
+<li><p>对所有img元素设置的全局max-width规则</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span>&#123;    <span class="attribute">max-width</span>:<span class="number">100%</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这条简洁的规则有很多好处，其一是使任何<img>元素都渲染为其自然宽度（除非超过容器）。超过容器宽度时，这条规则会将图像宽度限制为容器的宽度</p>
+</li>
+</ul>
+<h5 id="5-3-2-srcset"><a href="#5-3-2-srcset" class="headerlink" title="5.3.2 srcset"></a>5.3.2 srcset</h5><ul>
+<li><p>显示响应式图像的方法之一，是在<img>标签中使用名为srcset的HTML5特性。<img>标签的这个可选属性不是替换src属性，而是对其进行补充。</p>
+</li>
+<li><p>使用srcset具体说明图像</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"image-small.jpg"</span> <span class="attr">srcset</span>=<span class="string">"image-medium.jpg 640w,image-large.jpg 1280w"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>srcset属性的格式是图像URL和图像宽度，由空格分隔。图像名称采用<img>标签的src属性中常用的格式，宽度使用后缀w表示</p>
+</li>
+<li><p>srcset的优点是，它不需要媒体查询就可以工作。浏览器获取给定的信息，并根据视口的当前状态选择最适合的图像。</p>
+</li>
+</ul>
+<h5 id="5-3-3-使用size控制粒度"><a href="#5-3-3-使用size控制粒度" class="headerlink" title="5.3.3 使用size控制粒度"></a>5.3.3 使用size控制粒度</h5><ul>
+<li><p>它接受一组媒体查询和宽度，媒体查询起作用时，它后面的宽度设置图像应显示的宽度。这些媒体查询和图像大小可以通过逗号分隔成多对使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"image-small.jpg"</span>      <span class="attr">srcset</span>=<span class="string">"image-medium.jpg 640w,image-large.jpg 1280w"</span>     <span class="attr">sizes</span>=<span class="string">"(min-width:704px) 50vw, 100vw"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>size属性的内容有两个作用。在704像素和更宽的屏幕上，指示图像占据视口宽度的50%。要告诉浏览器这一点，可以使用视口宽度（vw）单位，即视口当前宽度的百分比。之后的下一个逗号分隔规则（不带媒体查询）是图像的默认宽度。</p>
+</li>
+</ul>
+<h5 id="5-3-4-使用picture元素"><a href="#5-3-4-使用picture元素" class="headerlink" title="5.3.4 使用picture元素"></a>5.3.4 使用picture元素</h5><ul>
+<li><p>为不同的屏幕提供不同的裁剪和焦点的实践</p>
+</li>
+<li><p>可以在<picture>中添加一些<source>标签，从而定义更多图像供浏览器使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">picture</span>&gt;</span>    <span class="tag">&lt;<span class="name">source</span> <span class="attr">media</span>=<span class="string">"(min-width:704px)"</span> <span class="attr">srcset</span>=<span class="string">"img/amp-medium.jpg 384w"</span> <span class="attr">sizes</span>=<span class="string">"33.3vw"</span>/&gt;</span>    <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"img/amp-cropped-small.jpg 320w"</span> <span class="attr">sizes</span>=<span class="string">"75vw"</span>&gt;</span>    //浏览器不支持picture的回退操作    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"img/amp-small.jpg"</span>&gt;</span>  <span class="tag">&lt;/<span class="name">picture</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>可以轻松使用<picture>元素应对高DPI显示器。这需要对<source>标签上的srcset属性进行更多调整</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">picture</span>&gt;</span>    <span class="tag">&lt;<span class="name">source</span> <span class="attr">media</span>=<span class="string">"(min-width:704px)"</span>             <span class="attr">srcset</span>=<span class="string">"img/amp-medium.jpg 384w,                    img/amp-large.jpg 512w,                    "</span>             <span class="attr">sizes</span>=<span class="string">"33.3vw"</span>/&gt;</span>    <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"img/amp-cropped-small.jpg 1x,                    img/amp-cropped-medium.jpg 2x,                    "</span>             <span class="attr">sizes</span>=<span class="string">"75vw"</span>&gt;</span>    //浏览器不支持picture的回退操作    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"img/amp-small.jpg"</span>&gt;</span>  <span class="tag">&lt;/<span class="name">picture</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>为了告知浏览器哪种图像应用于哪种类型的显示器，<strong>在srcset属性中使用x值代替宽度值。可以把它想象成一个简单的乘数</strong>，1x标记适合标准DPI屏幕的图像，2x或更高的倍数表示适合于更高DPI屏幕的图像。如果愿意，甚至可以使用3x或更高的倍数，因为5K显示器已经逐渐普及了。</p>
+</li>
+</ul>
+<h5 id="5-3-5-使用Picturefill提供polyfill支持"><a href="#5-3-5-使用Picturefill提供polyfill支持" class="headerlink" title="5.3.5 使用Picturefill提供polyfill支持"></a>5.3.5 使用Picturefill提供polyfill支持</h5><ul>
+<li><p>尽管srcset和<picture>都很有用，但它们的浏览器支持并不是通用的。值得庆幸的是，可以通过一个名为Picturefill的11KB小脚本，在不支持这些标签浏览器中使用它们。</p>
+</li>
+<li><p>从<a href="https://scottjehl.github.io/picturefill/下载Picturefill并将其放入项目" target="_blank" rel="noopener">https://scottjehl.github.io/picturefill/下载Picturefill并将其放入项目</a></p>
+</li>
+<li><p>第一个<code>&lt;script&gt;</code>块用于无法识别<picture>元素的浏览器，并防止在Picturefill完成加载之前，浏览器在HTML中解析它们时出现问题。第二个块加载Picturefill库，但使用async属性，因而不会阻塞页面渲染</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"><span class="built_in">document</span>.createElement(<span class="string">"picture"</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/picturefill.min.js"</span> <span class="attr">async</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="5-3-6-使用Modernizr选择性加载Picturefill"><a href="#5-3-6-使用Modernizr选择性加载Picturefill" class="headerlink" title="5.3.6 使用Modernizr选择性加载Picturefill"></a>5.3.6 使用Modernizr选择性加载Picturefill</h5><ul>
+<li><p>使用Modernizr来避免在现代浏览器中加载11KB的Picturefill库，方法是首先检查浏览器是否需要它。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/modernizr.custom.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">	<span class="keyword">if</span>(Modernizr.srcset === <span class="literal">false</span> || Modernizr.picture === <span class="literal">false</span>)&#123;        <span class="keyword">var</span> picturefill = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>)        picturefill.src = <span class="string">"js/picturefill"</span>        <span class="built_in">document</span>.body.appendChild(picturefill)    &#125;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="第6节-图像处理"><a href="#第6节-图像处理" class="headerlink" title="第6节 图像处理"></a>第6节 图像处理</h3><h4 id="6-1-雪碧图"><a href="#6-1-雪碧图" class="headerlink" title="6.1 雪碧图"></a>6.1 雪碧图</h4><ul>
+<li><p>图像雪碧图会组合图像以减少HTTP请求，这是一种连接。尽管你应该在HTTP/1上使用图像雪碧图来提高页面加载速度，但是<strong>应当避免在HTTP/2上使用它们。</strong></p>
+</li>
+<li><p>雪碧图就是把以往在整个网站中使用的单独的图像文件集合起来，组成一个图像文件。这些图像通常是图标等全局元素。</p>
+</li>
+<li><p>使用</p>
+<ul>
+<li><p>安装包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g svg-sprite</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用svg-sprite命令</p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/05E91A28FDFC42008635C36788D2DCD9?method=download&shareKey=ecb5b01257cf60652dec1b86cb7d3d79" alt="sprite.png"></p>
+</li>
+<li><p>使用生成的雪碧图，将生成的图片替换之前使用的即可</p>
+</li>
+</ul>
+</li>
+<li><p>创建包含特定于内容的图像雪碧图，会迫使用户下载可能不使用它的页面的内容。每个场景都是独特的，所以可以列出一个图像清单，然后创造最适合你的网站的雪碧图。</p>
+</li>
+<li><p>Grumpicon网站是一个基于Web的工具，它接受SVG文件，并生成带有回退选项的PNG版本的雪碧图</p>
+</li>
+</ul>
+<h4 id="6-2缩小图像"><a href="#6-2缩小图像" class="headerlink" title="6.2缩小图像"></a>6.2缩小图像</h4><h5 id="6-2-1-优化JPEG图像"><a href="#6-2-1-优化JPEG图像" class="headerlink" title="6.2.1 优化JPEG图像"></a>6.2.1 优化JPEG图像</h5><ul>
+<li><p>使用imagemin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install imagemin imagemin-jpeg-recompress</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个存放生成文件的文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir optimg</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>编写优化Node程序</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//reduce.jsvar imagemin = require('imagemin'),    jpegRecompress = require('imagemin-jpeg-recompress')imagemin(["img/*.jpg"],"optimg",&#123;    plugins:[        jpegRecompress(&#123;            accurate:true,  //设置精确度优先于速度            max:70  //输出图像最大JPEG质量        &#125;)    ]&#125;)  //输出到optimg文件夹</span></span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node reduce.js</span><br></pre></td></tr></table></figure>
+
+<p>最后将<img>标签引用更改为指向optimg文件夹中的文件。imagemin-jpeg-recompress并不是唯一的JPEG优化库。</p>
+</li>
+</ul>
+<h5 id="6-2-2-优化PNG图像"><a href="#6-2-2-优化PNG图像" class="headerlink" title="6.2.2 优化PNG图像"></a>6.2.2 优化PNG图像</h5><ul>
+<li><p>使用以下命令下载imagemin-optipng插件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install imagemin-optipng</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写Node程序，其余同上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//reduce.jsvar imagemin = require('imagemin'),    jpegRecompress = require('imagemin-optipng')imagemin(["img/*.jpg"],"optimg",&#123;    plugins:[        optipng()    ]&#125;)  //输出到optimg文件夹</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="6-2-3-优化SVG"><a href="#6-2-3-优化SVG" class="headerlink" title="6.2.3 优化SVG"></a>6.2.3 优化SVG</h5><ul>
+<li><p>安装包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g svgo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用命令转换svg</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svg  -o b.svg a.svg</span><br></pre></td></tr></table></figure>
+
+<p>这个命令的格式很简单。它以-o参数开始，该参数是svgo写入优化后的输出的文件名称。之后是未优化的SVG文件的名称。</p>
+</li>
+<li><p>svgo程序功能强大，有很多选项。也许我们应该深入看看你是否可以进一步优化这个图像。键入svgo -h可以查看其他选项。值得留意的是-p参数，可以使用它来控制浮点数的精度。尝试将此值设置为1。不过，不要太仓促地宣布成功。应该观察输出，看看是否引入了任何异常。</p>
+</li>
+</ul>
+<h4 id="6-3-使用WebP编码图像"><a href="#6-3-使用WebP编码图像" class="headerlink" title="6.3 使用WebP编码图像"></a>6.3 使用WebP编码图像</h4><ul>
+<li>栅图像仅有的可用选项就是JPG、GIF和PNG格式。几乎再没有新的格式出现，直到几年前Google引入了WebP。WebP同时支持有损和无损格式编码。</li>
+<li>Google的WebP格式是一个很好的例子。WebP很强大，它根据图像内容提供比等效格式更小的文件</li>
+</ul>
+<h5 id="6-3-1-使用imagemin编码有损WebP图像"><a href="#6-3-1-使用imagemin编码有损WebP图像" class="headerlink" title="6.3.1 使用imagemin编码有损WebP图像"></a>6.3.1 使用imagemin编码有损WebP图像</h5><ul>
+<li><p>需要安装imagemin和imagemin-webp插件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install imagemin imagemin-webp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用imagemin将JPEG图像编码为有损WebP图像,其余同上文</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//reduce.jsvar imagemin = require('imagemin'),    jpegRecompress = require('imagemin-webp')imagemin(["img/*.jpg"],"optimg",&#123;    plugins:[        webp(&#123;            quality:40  //将Webp编码器的质量设置为40，最大为100        &#125;)    ]&#125;)  //输出到optimg文件夹</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="6-3-2-使用imagemin编码无损WebP图像"><a href="#6-3-2-使用imagemin编码无损WebP图像" class="headerlink" title="6.3.2 使用imagemin编码无损WebP图像"></a>6.3.2 使用imagemin编码无损WebP图像</h5><ul>
+<li><p>其余同上文</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//reduce.jsvar imagemin = require('imagemin'),    jpegRecompress = require('imagemin-webp')imagemin(["img/*.jpg"],"optimg",&#123;    plugins:[        webp(&#123;            lossless:true        &#125;)    ]&#125;)  //输出到optimg文件夹</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="6-3-3-支持度不高"><a href="#6-3-3-支持度不高" class="headerlink" title="6.3.3 支持度不高"></a>6.3.3 支持度不高</h5><ul>
+<li><p>尽管WebP是一种很好的图像格式，你也可以从现在开始使用它，但它的支持并不像成熟的图像格式那么广泛。如果你的用户依赖于Firefox或Safari等浏览器</p>
+</li>
+<li><p>你需要指定其他浏览器可以处理的回退。要在<picture>元素中创建一系列回退，可以在<source>元素上使用type属性。type接受图像的文件类型作为srcset属性中指定的图像的参数。继续使用<picture>中的type属性来优先使用WebP图像，并在不支持WebP的浏览器中回退到JPEG图像。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">picture</span>&gt;</span>	<span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"img/amp-small.webp"</span> <span class="attr">type</span>=<span class="string">"image/webp"</span>/&gt;</span>    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"img/amp-small.jpg"</span>/&gt;</span><span class="tag">&lt;/<span class="name">picture</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="6-4-懒加载图像"><a href="#6-4-懒加载图像" class="headerlink" title="6.4 懒加载图像"></a>6.4 懒加载图像</h4><ul>
+<li><p>为懒加载程序配置标记是任务中最省时的部分，但它至关重要。你需要一个阻止浏览器默认加载图像的模式。将srcset和src属性移动到data属性，这样图像就不会加载；为需要懒加载脚本处理的<code>&lt;img&gt;</code>元素添加一个类。</p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/7E30B47A455B46AABA3FACF2D78A4956?method=download&shareKey=ab7e1a549c8000a34c64f3209c34bbeb" alt="lazypic.png"></p>
+<p><code>&lt;source&gt;</code>和<code>&lt;img&gt;</code>元素上的所有srcset和src属性更改为data-srcset和data-src属性。将图像URL存储在这些占位符属性中可以跟踪图像来源，同时防止它们加载，直到你希望加载为止。然后，在<code>&lt;img&gt;</code>标签上创建一个新的src属性，指向具有灰色背景的16像素×9像素占位符PNG。这通过引入占用同等空间的占位符，使布局的变化保持最小。最后一步是将lazy类添加到<code>&lt;img&gt;</code>标签。这就是在需要加载图像时懒加载程序脚本的目标元素。</p>
+</li>
+<li><p>懒加载脚本lazyload.js  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">  (<span class="function"><span class="keyword">function</span> (<span class="params">window, document</span>) </span>&#123;</span><br><span class="line"><span class="meta">    "use strict"</span>;</span><br><span class="line">    <span class="keyword">var</span> lazyLoader = &#123;</span><br><span class="line">        lazyClass: <span class="string">"lazy"</span>,</span><br><span class="line">        <span class="comment">//html中，懒加载图像使用的类名	</span></span><br><span class="line">        images: <span class="literal">null</span>,</span><br><span class="line">        <span class="comment">//图像元素集合		</span></span><br><span class="line">        processing: <span class="literal">false</span>,</span><br><span class="line">        <span class="comment">//处理状态，用于限制执行		</span></span><br><span class="line">        throttle: <span class="number">200</span>,</span><br><span class="line">        <span class="comment">//节流时间		</span></span><br><span class="line">        buffer: <span class="number">50</span>,</span><br><span class="line">        <span class="comment">//视口缓冲大小，用于加载视口边缘附近图像	</span></span><br><span class="line">        init: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//开始懒加载			</span></span><br><span class="line">            lazyLoader.images = [].slice.call(<span class="built_in">document</span>.getElementsByClassName(lazyLoader.lazyClass));</span><br><span class="line">            <span class="comment">//通过lazyClass属性定义的类名，获取所有元素			</span></span><br><span class="line">            lazyLoader.scanImages();</span><br><span class="line">            <span class="comment">//初始化时运行scanImages			</span></span><br><span class="line">            <span class="built_in">document</span>.addEventListener(<span class="string">"scroll"</span>, lazyLoader.scanImages);</span><br><span class="line">            <span class="comment">//滚动时运行scanImages			</span></span><br><span class="line">            <span class="built_in">document</span>.addEventListener(<span class="string">"touchmove"</span>, lazyLoader.scanImages);</span><br><span class="line">            <span class="comment">////触摸屏幕时运行scanImages		</span></span><br><span class="line">        &#125;,</span><br><span class="line">        destroy: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//页面删除懒加载行为			</span></span><br><span class="line">            <span class="built_in">document</span>.removeEventListener(<span class="string">"scroll"</span>, lazyLoader.scanImages);</span><br><span class="line">            <span class="comment">//移除行为			</span></span><br><span class="line">            <span class="built_in">document</span>.removeEventListener(<span class="string">"touchmove"</span>, lazyLoader.scanImages);</span><br><span class="line">            <span class="comment">//移除行为		</span></span><br><span class="line">        &#125;,</span><br><span class="line">        scanImages: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">document</span>.getElementsByClassName(lazyLoader.lazyClass).length === <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">//检查是否还有文件需要懒加载				</span></span><br><span class="line">                lazyLoader.destroy();</span><br><span class="line">                <span class="comment">//所有图像都已加载则析构加载程序				</span></span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (lazyLoader.processing === <span class="literal">false</span>) &#123;</span><br><span class="line">                <span class="comment">//检查文档是否正在被检查图像				</span></span><br><span class="line">                lazyLoader.processing = <span class="literal">true</span>;</span><br><span class="line">                <span class="comment">//阻塞后续代码执行			</span></span><br><span class="line">                setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    <span class="comment">//将代码块处理延迟指定时间					</span></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> lazyLoader.images) &#123;</span><br><span class="line">                        <span class="comment">//循环集合中所有图像						</span></span><br><span class="line">                        <span class="keyword">if</span> (lazyLoader.images[i].className.indexOf(<span class="string">"lazy"</span>) !== <span class="number">-1</span>) &#123;</span><br><span class="line">                            <span class="comment">//检查图像是否在视口中						</span></span><br><span class="line">                            <span class="keyword">if</span> (lazyLoader.inViewport(lazyLoader.images[i])) &#123;</span><br><span class="line">                                <span class="comment">//检查元素是否包含lazy类							</span></span><br><span class="line">                                lazyLoader.loadImage(lazyLoader.images[i]);</span><br><span class="line">                                <span class="comment">//将当前元素传递给loadImage方法							</span></span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    lazyLoader.processing = <span class="literal">false</span>;</span><br><span class="line">                    <span class="comment">//关闭标志位				</span></span><br><span class="line">                &#125;, lazyLoader.throttle);</span><br><span class="line">                <span class="comment">//通过throttle属性指定超时时间			</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        inViewport: <span class="function"><span class="keyword">function</span> (<span class="params">img</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//核心懒加载方法			</span></span><br><span class="line">            <span class="comment">//寻找视口的位置和高度以及缓冲阈值			</span></span><br><span class="line">            <span class="keyword">var</span> top = ((<span class="built_in">document</span>.body.scrollTop || <span class="built_in">document</span>.documentElement.scrollTop) + <span class="built_in">window</span>.innerHeight) + lazyLoader.buffer;</span><br><span class="line">            <span class="keyword">return</span> img.offsetTop &lt;= top;</span><br><span class="line">            <span class="comment">//检查给定的图像是否在视口中		</span></span><br><span class="line">        &#125;, <span class="attr">loadImage</span>: <span class="function"><span class="keyword">function</span> (<span class="params">img</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (img.parentNode.tagName === <span class="string">"PICTURE"</span>) &#123;</span><br><span class="line">                <span class="comment">//检查图像父节点是否为picture				</span></span><br><span class="line">                <span class="keyword">var</span> sourceEl = img.parentNode.getElementsByTagName(<span class="string">"source"</span>);</span><br><span class="line">                <span class="comment">//获取附近source元素				</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; sourceEl.length; i++) &#123;</span><br><span class="line">                    <span class="comment">//遍历source元素					</span></span><br><span class="line">                    <span class="keyword">var</span> sourceSrcset = sourceEl[i].getAttribute(<span class="string">"data-srcset"</span>);</span><br><span class="line">                    <span class="comment">//获取data-srcset属性用于加载图像					</span></span><br><span class="line">                    <span class="keyword">if</span> (sourceSrcset !== <span class="literal">null</span>) &#123;</span><br><span class="line">                        <span class="comment">//检查source元素是否存在srcset属性						</span></span><br><span class="line">                        sourceEl[i].setAttribute(<span class="string">"srcset"</span>, sourceSrcset);</span><br><span class="line">                        <span class="comment">//设置srcset						s</span></span><br><span class="line">                        ourceEl[i].removeAttribute(<span class="string">"data-srcset"</span>);</span><br><span class="line">                        <span class="comment">//删除data-srcset					</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//从img元素中获取data-src和data-srcset			</span></span><br><span class="line">            <span class="keyword">var</span> imgSrc = img.getAttribute(<span class="string">"data-src"</span>),</span><br><span class="line">                imgSrcset = img.getAttribute(<span class="string">"data-srcset"</span>);</span><br><span class="line">            <span class="comment">//检查img元素上是否存在data-src			</span></span><br><span class="line">            <span class="keyword">if</span> (imgSrc !== <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="comment">//将img的src设置为data-src属性的值			</span></span><br><span class="line">                img.setAttribute(<span class="string">"src"</span>, imgSrc);</span><br><span class="line">                img.removeAttribute(<span class="string">"data-src"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//同上			</span></span><br><span class="line">            <span class="keyword">if</span> (imgSrcset !== <span class="literal">null</span>) &#123;</span><br><span class="line">                img.setAttribute(<span class="string">"srcset"</span>, imgSrcset);</span><br><span class="line">                img.removeAttribute(<span class="string">"data-srcset"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//移除img元素的懒加载类名			</span></span><br><span class="line">            lazyLoader.removeClass(img, lazyLoader.lazyClass);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//移除类名中包含lazy的类名		</span></span><br><span class="line">        removeClass: <span class="function"><span class="keyword">function</span> (<span class="params">img, className</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> classArr = img.className.split(<span class="string">" "</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; classArr.length; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (classArr[i] === className) &#123;</span><br><span class="line">                    classArr.splice(i, <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            img.className = classArr.toString().replace(<span class="string">","</span>, <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">//开始运行脚本	</span></span><br><span class="line">    <span class="built_in">document</span>.onreadystatechange = lazyLoader.init;</span><br><span class="line">&#125;)(<span class="built_in">window</span>, <span class="built_in">document</span>);</span><br></pre></td></tr></table></figure>
+
+<p>将脚本放入html中使用</p>
+</li>
+<li><p>有些用户关闭了JavaScript或者无法使用JavaScript。方法是添加<code>&lt;noscript&gt;</code>标签，在src和srcset属性中显式设置图像源。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">noscript</span>&gt;</span>	<span class="tag">&lt;<span class="name">picture</span>&gt;</span>        <span class="tag">&lt;<span class="name">source</span> <span class="attr">...</span>&gt;</span>    <span class="tag">&lt;/<span class="name">picture</span>&gt;</span><span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="第7节-影响脚本加载行为"><a href="#第7节-影响脚本加载行为" class="headerlink" title="第7节 影响脚本加载行为"></a>第7节 影响脚本加载行为</h3><ul>
+<li><p>通过修改<code>&lt;script&gt;</code>标签的async属性实现的。async（asynchronous的缩写）告诉浏览器加载脚本后立即执行该脚本且不会在下载时阻塞渲染，而不是按顺序加载每个脚本并等待它们依次执行。</p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/657962BE7BB84B60B12F59647C24722E?method=download&shareKey=a2748750f9e0ad9a26b9b99be5591c3f" alt="async.png"></p>
+</li>
+<li><p>使用async</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/jquery.js"</span> <span class="attr">async</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用注意，如果没有任何脚本具有依赖项，则可以自由使用async。但是当脚本具有依赖性时，事情就会变得棘手。解决此问题的一种方法是将依赖脚本组合起来，以便将这些依赖打包为单个资源。在本例中，可以按顺序组合jquery.min.js和behaviors.js。在命令行中运行此命令，将两个脚本合并为scripts.js：</p>
+</li>
+</ul>
+<h3 id="第8节-使用-Service-Worker-提升性能"><a href="#第8节-使用-Service-Worker-提升性能" class="headerlink" title="第8节 使用 Service Worker 提升性能"></a>第8节 使用 Service Worker 提升性能</h3><ul>
+<li>有时我们会离线，例如，在没有Wi-Fi的飞机上，或汽车、火车通过隧道的时候。这就是现实生活。这种情况发生时，我们已经习惯于无法浏览网站。但不一定非要这样，这就是ServiceWorker出现的原因。</li>
+</ul>
+<h3 id="第9节-微调资源传输的方法"><a href="#第9节-微调资源传输的方法" class="headerlink" title="第9节 微调资源传输的方法"></a>第9节 微调资源传输的方法</h3><h4 id="9-1-服务器压缩资源"><a href="#9-1-服务器压缩资源" class="headerlink" title="9.1 服务器压缩资源"></a>9.1 服务器压缩资源</h4><ul>
+<li><p>为客户网站压缩资源时，通过npm下载的compression模块。这个模块使用gzip算法——最常用的压缩算法。可以通过传递选项来修改此模块应用的压缩级别。可以通过level选项指定0～9的数字修改压缩级别，其中0代表不压缩，9代表最大值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(compression(&#123;    <span class="attr">level</span>:<span class="number">7</span>&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>将压缩级别设置为9并非总是最佳策略。level设置得越高，CPU压缩响应所需的时间就越多。压缩内容所花费的额外CPU时间可能会使问题复杂化，并使总体性能变差。我能给出的最好建议是：在有效载荷大小和压缩时间之间取得平衡。大多数情况下，默认压缩级别6是最适合的，但是你自己的测试才是最权威的信息源。</p>
+</li>
+<li><p>针对压缩哪些类型的文件给出了两个建议：总是压缩文本文件类型（因为它们的压缩效果很好），以及避免压缩内部已经压缩的文件。你应该避免压缩大多数图像类型（SVG除外，SVG属于XML文件）和字体文件类型，如WOFF和WOFF2。在Node Web服务器上使用的compression模块不会尝试压缩所有内容。如果要压缩所有资源，必须通过filter选项传递函数来告诉它</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(compression(&#123;    <span class="attr">filter</span>:<span class="function"><span class="keyword">function</span>(<span class="params">request,response</span>)</span>&#123;        <span class="keyword">return</span> <span class="literal">true</span>;    &#125;&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>在我的测试中，我比较了所有压缩级别下JPEG、PNG和SVG图像的压缩比</p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/344A4A0854A844E893E50BBF97CC26AA?method=download&shareKey=48124ac69c65ac5cb32665538661e97b" alt="compression.png"></p>
+<p>如你所见，PNG和JPEG根本不能压缩。SVG压缩得很好，因为它们是由可压缩的文本数据组成的。</p>
+</li>
+<li><p>gzip一直是首选的压缩方法，而且这种情况似乎不会很快改变。但一个有前途的新竞争者已经登场——Brotli。</p>
+<ul>
+<li><p>尽管Brotli在某些方面的性能与gzip相当，但它显示出了良好的前景，并在不断地发展。考虑到这一点，Brotli值得你考虑。但是查看Brotli性能之前，先看看如何在浏览器中检查Brotli支持情况。如果有Chrome 50或更高版本，请打开开发者工具，转到任一启用HTTPS的网站上的Network选项卡，查看任一资源的Accept-Encoding请求头的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">accept-encoding:gzip,deflate,sdch,br</span><br></pre></td></tr></table></figure>
+
+<p>如果浏览器支持Brotli，它会在Accept-Encoding请求头中将br令牌包含在接受的编码列表中。当支持它的服务器看到这个令牌时，就会用Brotli压缩的内容进行回复，否则它应该回退到下一个支持的编码方案。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="9-2-缓存资源"><a href="#9-2-缓存资源" class="headerlink" title="9.2 缓存资源"></a>9.2 缓存资源</h4><h5 id="9-2-1缓存Cache-Control"><a href="#9-2-1缓存Cache-Control" class="headerlink" title="9.2.1缓存Cache-Control"></a>9.2.1缓存Cache-Control</h5><ul>
+<li><p>Cache-Control头部。这个头部几乎在每一个浏览器中都指示缓存行为。通过其max-age指令，该指令指定缓存资源的生命周期（以秒为单位）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control:max-age &#x3D; 3600</span><br></pre></td></tr></table></figure>
+
+<p>当用户再次访问时，请求的资源对于max-age指令中指定的时间量（3600秒，或者更直观地说，一小时）之内的缓存是有效的。</p>
+</li>
+</ul>
+<h5 id="9-2-2-服务器检查资源是否更改"><a href="#9-2-2-服务器检查资源是否更改" class="headerlink" title="9.2.2 服务器检查资源是否更改"></a>9.2.2 服务器检查资源是否更改</h5><ul>
+<li>流行的方法是使用实体标记，简称ETag。ETag是根据文件内容生成的校验和。浏览器将这个值发送到服务器，服务器将通过验证该值来查看资源是否已更改。另一个方法是检查文件在服务器上最后修改的时间，并根据上次修改时间提供资源的副本。可以使用Cache-Control头部修改此行为。</li>
+<li>max-age指令对于大多数网站来说都是适合的，但有时候你需要限制缓存行为或者完全取消它。使用no-cache、no-store、stale-while-revalidate控制资源重新验证</li>
+</ul>
+<h5 id="9-2-3-CDN"><a href="#9-2-3-CDN" class="headerlink" title="9.2.3 CDN"></a>9.2.3 CDN</h5><ul>
+<li><p>可以在网站前使用CDN。CDN是一种代理服务，它位于你的网站前面，并优化内容向用户的传输。CDN将你的资源托管在它们的服务器网络上，因此CDN可以有效缓存你的内容。可以将两个Cache-Control指令（public和private）与max-age结合使用，它们能够帮助你控制CDN缓存内容的方式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: public,max-age&#x3D;86400</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="9-3-制定最佳缓存策略"><a href="#9-3-制定最佳缓存策略" class="headerlink" title="9.3 制定最佳缓存策略"></a>9.3 制定最佳缓存策略</h4><ul>
+<li><p>对资源进行分类时，最好的标准是资源更改的频率。例如，HTML文档可能经常更改，而CSS、JavaScript和图像等资源更改的可能性要小一些。</p>
+</li>
+<li><p>展示了这些资源类型的细分，以及我为它们选择的缓存策略。</p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/7D56AA47ECA343C48CB0B3EB4729126D?method=download&shareKey=2fb504244d58dadba2fba706f8b25ca6" alt="cache.png"></p>
+</li>
+<li><p>❏ HTML文件或者输出HTML的服务器端语言（例如PHP或ASP.NET）可以受益于保守的缓存策略。你永远不会希望浏览器假定页面应该只从浏览器缓存中读取，而不去重新验证其新鲜度。</p>
+<ul>
+<li>no-cache可以确保总是重新验证资源，如果资源已更改，则下载新的副本。如果文件的内容没有更改，则重新验证资源确实会减少服务器上的负载，但是no-cache不会激进地缓存HTML，以避免内容过时。</li>
+<li>max-age为一小时，可确保在max-age到期后，无论发生什么情况，都获取资源的新副本。</li>
+<li>使用private指令告诉位于Web源服务器前面的任何CDN：该资源根本不应缓存在其服务器上，而应仅在用户和Web源服务器之间缓存。</li>
+</ul>
+</li>
+<li><p>CSS和JavaScript是重要的资源，但不需要如此积极地缓存。因此，你可以使用30天的max-age。因为你会从为你分发内容的CDN中受益，所以应该使用public指令允许CDN缓存资源。</p>
+</li>
+<li><p>图像和其他媒体文件（如字体）几乎不会改变，而且这些往往是你要提供的最大的资源。因此，把max-age设置为较长的时间（比如一年）比较合适。</p>
+<ul>
+<li>与CSS和JavaScript文件一样，你会希望CDN能够缓存这些资源。因此此处自然也要使用public指令。</li>
+<li>因为这些资源不会经常变化，所以你希望有一个宽限期，在这个宽限期内可以接受某种程度的过时资源，因此，一天的stale-while-revalidate周期适合用来给浏览器异步验证资源的新鲜度。</li>
+</ul>
+</li>
+</ul>
+<h4 id="9-4-实现缓存策略"><a href="#9-4-实现缓存策略" class="headerlink" title="9.4 实现缓存策略"></a>9.4 实现缓存策略</h4><ul>
+<li><p>自定义<code>http.js</code></p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/0836962BED23487EBAA2AB0FE4CBC202?method=download&shareKey=e874052be9965beea1a4274e865e1159" alt="use-cache.png"></p>
+</li>
+<li><p>测试：不要重新加载页面，因为这将导致浏览器与服务器联系以重新验证资源。正确做法是导航到页面。要在已经打开的页面上执行此操作，请点击地址栏并按回车键。</p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/319B0B253A474D85A80BB34444784BB3?method=download&shareKey=125a285b371cfdad31ea045db9ef463d" alt="network-cache.png"></p>
+</li>
+</ul>
+<h4 id="9-5-使缓存资源失效"><a href="#9-5-使缓存资源失效" class="headerlink" title="9.5 使缓存资源失效"></a>9.5 使缓存资源失效</h4><ul>
+<li><p>使CSS和JavaScript资源失效。假设使用php时,强制CSS更新，其他语言也有替代方案</p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/79CEFFDF334B454E853370DE12D2E4A5?method=download&shareKey=0dbe25da7e56c21488f5993236cb1265" alt="update-style.png"></p>
+</li>
+<li><p>使图像和其他媒体文件失效。明智的选择可能是指向一个新的图像文件。</p>
+</li>
+</ul>
+<h4 id="9-6-使用CDN"><a href="#9-6-使用CDN" class="headerlink" title="9.6 使用CDN"></a>9.6 使用CDN</h4><ul>
+<li><p>可以将这个<code>&lt;script&gt;</code>标签的src属性更改为指向由MaxCDN免费提供的CDN托管版本的库：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-2.2.3.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以下是为你提供各种资源的简短的CDN列表。</p>
+<ul>
+<li>cdnjs是一个托管了几乎所有流行的（或不那么流行的）库的CDN。它提供了干净的界面，使你能够搜索任何可以想到的常用CSS或JavaScript资源，例如广泛使用的MVC/MVVM框架、jQuery插件，或项目所依赖的任何其他东西。</li>
+<li>jsDelivr是另一个类似于cdnjs的CDN。如果cdnjs没有提供你想要的内容，请尝试在这里搜索</li>
+<li>Google CDN涵盖的库比cdnjs或jsDeliv少得多，但它确实提供了流行的库（如Angular和其他库）。在我的测试中，这是最快的CDN。</li>
+</ul>
+</li>
+<li><p>建议</p>
+<ul>
+<li><strong>另一个建议是：如果你使用的库（如Modernizr或Bootstrap）可以配置为提供该库功能的特定部分，请配置你自己的构建，而不要指向CDN上的整个库。有时候，配置一个较小的构建并将其托管在自己的服务器上，比从CDN引用完整的构建要快。理清你的需求，并比较哪种方法更好。</strong></li>
+<li><strong>如果你使用的库（如Modernizr或Bootstrap）可以配置为提供该库功能的特定部分，请配置你自己的构建，而不要指向CDN上的整个库。有时候，配置一个较小的构建并将其托管在自己的服务器上，比从CDN引用完整的构建要快。理清你的需求，并比较哪种方法更好。</strong></li>
+</ul>
+</li>
+<li><p>CDN失效指定回退版本</p>
+<p><img src= "/img/loading.gif" data-src="https://note.youdao.com/yws/api/personal/file/6A23027655AB4306AD03A2B8C4285BD0?method=download&shareKey=8698f630a1411cb5723ab1209c5517ff" alt="cdn-rollback.png"></p>
+</li>
+</ul>
+<h4 id="9-7-使用资源提示"><a href="#9-7-使用资源提示" class="headerlink" title="9.7 使用资源提示"></a>9.7 使用资源提示</h4><ul>
+<li><p>资源提示可用于加快网页加载速度、微调特定页面资源的传输，以及预渲染用户尚未访问的页面。</p>
+</li>
+<li><p>在功能强大的浏览器中，prefetch告诉浏览器下载特定资源，并将其存储到浏览器缓存中。这个资源提示可以像请求那样，用于预取位于同一页面上的资源；或者你也可以对用户下一步可能访问的页进行猜测，并请求那个页面的资源。使用第二种方法时要特别小心，因为它可能会迫使用户下载不必要的资源。</p>
+</li>
+<li><p>preload资源提示与prefetch非常相似，只是它保证将下载指定的资源。script、style、font和image的值可以分别用于JavaScript、CSS、字体和图像。使用as属性描述请求的内容类型。此属性是完全可选的，但省略它是不利的，因为如果没有as，浏览器将下载该资源两次。</p>
+</li>
+<li><p>使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"preload"</span> <span class="attr">href</span>=<span class="string">"https://code.jquery.com/jquery-2.2.3.min.js"</span> <span class="attr">as</span>=<span class="string">"script"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>必须在preload和prefetch之间进行选择，请选择prefetch。如果浏览器支持没有那么重要，并且希望无论怎样请求都能够抢先加载内容，请选择preload。</p>
+</li>
+</ul>
+<h3 id="第10节-HTTP-2必要性"><a href="#第10节-HTTP-2必要性" class="headerlink" title="第10节 HTTP/2必要性"></a>第10节 HTTP/2必要性</h3><ul>
+<li>HTTP/2 ：解决HTTP1协议的三大问题<ul>
+<li>队首阻塞、未压缩头部和缺少HTTPS的授权。</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Zting</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://tammy-zting.github.io/2021/07/28/Web%E6%80%A7%E8%83%BD%E5%AE%9E%E6%88%98%20%E7%AC%AC%E4%BA%8C%E8%8A%82/">http://tammy-zting.github.io/2021/07/28/Web性能实战 第二节/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://tammy-zting.github.io" target="_blank">Tammy-Zting-Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/dog.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/07/28/Web%E6%80%A7%E8%83%BD%E5%AE%9E%E6%88%98%20%E7%AC%AC%E4%B8%80%E8%8A%82/"><img class="next-cover" data-src="/img/dog.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Web性能实战 第一节</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Zting</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" title="缩小字体"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="简繁转换">繁</button><button id="darkmode" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>
